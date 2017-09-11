@@ -41,3 +41,25 @@ const titles = document.querySelectorAll('.title');
 // Get one by selector -- Element
 const oneTitle = document.querySelector('h1.title');
 //console.log(oneTitle);
+
+////////////////////////
+// Manipulating nodes //
+////////////////////////
+
+// Create a node
+const divTag = document.createElement('div');
+
+// Add some text to it
+divTag.innerText = `Here's a new div that we just created!`;
+
+// Put it in the body
+body.appendChild(divTag);
+
+// Create a text node
+const textNode = document.createTextNode('Here is another div!');
+
+// Clear the innerText
+divTag.innerText = '';
+
+// Add text back via textNode
+divTag.appendChild(textNode);
