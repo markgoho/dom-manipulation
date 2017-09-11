@@ -40,4 +40,4 @@ const titles = document.querySelectorAll('.title');
 
 // Get one by selector -- Element
 const oneTitle = document.querySelector('h1.title');
-console.log(oneTitle);
+//console.log(oneTitle);
