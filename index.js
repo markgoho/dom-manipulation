@@ -1,8 +1,11 @@
 // Nodes -- like an element
 const body = document.body;
 
-// childNodes: NodeList
+// childNodes: NodeList, LIVE!
 const bodyChildren = body.childNodes;
+// console.log(bodyChildren);
+// bodyChildren[1].remove();
+// console.log(bodyChildren);
 
 // NodeList is array-like
 //console.log('Children of body:');
@@ -20,46 +23,96 @@ const parent = child.parentNode;
 //console.log('nextSibling', child.nextSibling);
 //console.log('previousSibling', child.previousSibling);
 
-// Targeting specific elements
-const link = document.getElementsByTagName('a'); // HTMLCollection
+// Targeting specific elements -- HTMCollection, live!
+const links = document.getElementsByTagName('a'); // HTMLCollection
+// console.log(links);
+// links[0].remove();
+// console.log(links);
 
-//link.forEach(el => console.log(el.href)); // doesn't work!
-//console.log(link);
-
-// Get by id -- HTMLElement
+// Get by id -- HTMLElement, static
 const book = document.getElementById('book');
-//console.log(book);
+// console.log(book);
+// book.remove();
+// console.log(book);
 
-// Get by class -- HTMLCollection!!
-const title = document.getElementsByClassName('title');
-//console.log(title);
+// Get by class -- HTMLCollection, live!
+const titlesByClass = document.getElementsByClassName('title');
+// console.log(titlesByClass);
+// titlesByClass[0].remove();
+// console.log(titlesByClass);
 
-// Get all by selector -- NodeList
+// Get all by selector -- NodeList, static
 const titles = document.querySelectorAll('.title');
-//console.log(titles);
+// console.log(titles);
+// titles[0].remove();
+// console.log(titles);
 
-// Get one by selector -- Element
+// Get one by selector -- Element, static
 const oneTitle = document.querySelector('h1.title');
-//console.log(oneTitle);
+// console.log(oneTitle);
+// oneTitle.remove();
+// console.log(oneTitle);
+
+////////////////
+// side notes //
+////////////////
+
+console.log(links instanceof HTMLCollection); // true
+
+// Node > Element > HTMLElement > HTML<type>Element (e.g. HTMLDivElement)
+// NodeList !== HTMLCollection although they are similar
+// Live vs. Static
 
 ////////////////////////
 // Manipulating nodes //
 ////////////////////////
 
-// Create a node
-const divTag = document.createElement('div');
+/////////////////
+// Create node //
+/////////////////
 
-// Add some text to it
-divTag.innerText = `Here's a new div that we just created!`;
+// Create a node/element, returns element of that particular type
+const divTag = document.createElement('div'); // HTMLDivElement
 
-// Put it in the body
+// Create a textNode
+const textNode = document.createTextNode('Here is another div!');
+console.log(textNode instanceof Text); // true
+
+//////////////////////
+// Add node to body //
+//////////////////////
+
+// Put it in the body, kind of like .push() for Arrays
 body.appendChild(divTag);
 
-// Create a text node
-const textNode = document.createTextNode('Here is another div!');
-
-// Clear the innerText
-divTag.innerText = '';
-
-// Add text back via textNode
+// Add text to divTag Node
 divTag.appendChild(textNode);
+
+//////////////////
+// Remove nodes //
+//////////////////
+
+// Node.removeChild() must be called on parent of element to be removed
+//const removedDiv = body.removeChild(divTag); // Why set this to a variable?
+
+// Node.remove() must be called on the node itself
+//divTag.remove();
+
+/////////////////////////////////////////////////
+//                 //////////////////////////////
+//   Edit nodes    //////////////////////////////
+//                 //////////////////////////////
+/////////////////////////////////////////////////
+
+// What kind of Node is it?
+
+// Attributes
+const inputEl = document.createElement('input');
+inputEl.setAttribute('type', 'text');
+body.appendChild(inputEl);
+
+// Classes
+inputEl.classList.add('fancy');
+
+// What else?
+inputEl.autocomplete = 'on';
