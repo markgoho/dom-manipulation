@@ -23,7 +23,7 @@ const parent = child.parentNode;
 //console.log('nextSibling', child.nextSibling);
 //console.log('previousSibling', child.previousSibling);
 
-// Targeting specific elements -- HTMCollection, live!
+// Targeting specific elements -- HTMLCollection, live!
 const links = document.getElementsByTagName('a'); // HTMLCollection
 // console.log(links);
 // links[0].remove();
@@ -38,14 +38,15 @@ const book = document.getElementById('book');
 // Get by class -- HTMLCollection, live!
 const titlesByClass = document.getElementsByClassName('title');
 // console.log(titlesByClass);
+// const heading = titlesByClass[0];
 // titlesByClass[0].remove();
 // console.log(titlesByClass);
+// console.log(heading);
 
 // Get all by selector -- NodeList, static
-const titles = document.querySelectorAll('.title');
+// const titles = document.querySelectorAll('.title');
 // console.log(titles);
 // titles[0].remove();
-// console.log(titles);
 
 // Get one by selector -- Element, static
 const oneTitle = document.querySelector('h1.title');
@@ -57,7 +58,7 @@ const oneTitle = document.querySelector('h1.title');
 // side notes //
 ////////////////
 
-console.log(links instanceof HTMLCollection); // true
+// console.log(links instanceof HTMLCollection); // true
 
 // Node > Element > HTMLElement > HTML<type>Element (e.g. HTMLDivElement)
 // NodeList !== HTMLCollection although they are similar
@@ -76,7 +77,7 @@ const divTag = document.createElement('div'); // HTMLDivElement
 
 // Create a textNode
 const textNode = document.createTextNode('Here is another div!');
-console.log(textNode instanceof Text); // true
+//console.log(textNode instanceof Text); // true
 
 //////////////////////
 // Add node to body //
@@ -94,9 +95,12 @@ divTag.appendChild(textNode);
 
 // Node.removeChild() must be called on parent of element to be removed
 //const removedDiv = body.removeChild(divTag); // Why set this to a variable?
-
+//divTag.removeChild(textNode);
 // Node.remove() must be called on the node itself
 //divTag.remove();
+
+const bookP = document.querySelector('p#book');
+console.log(bookP.childNodes[1].childNodes);
 
 /////////////////////////////////////////////////
 //                 //////////////////////////////
