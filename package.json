@@ -1,0 +1,13 @@
+{
+  "name": "dom-manipulation",
+  "version": "1.0.0",
+  "description": "Javascript drumkit based on Wes Bos's Javascript 30 exercise",
+  "main": "index.js",
+  "repository": "https://github.com/markgoho/dom-manipulation.git",
+  "author": "markgoho <markgoho@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "workbox-build": "^2.0.1"
+  }
+}
