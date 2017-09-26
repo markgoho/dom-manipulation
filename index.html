@@ -5,79 +5,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="style.css">
-  <title>Best City Guide</title>
+  <title>Document</title>
+  <style>
+    .progress {
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .progress>div {
+      height: 3px;
+      background-color: lightblue;
+      width: 0%;
+    }
+
+    body {
+      height: 2000px;
+      margin: 0;
+    }
+  </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="container">
-      <h1 class="name">
-        <a href="#">Best City Guide</a>
-      </h1>
-      <nav>
-        <a href="#">ice cream</a>
-        <a href="#">donuts</a>
-        <a href="#">tea</a>
-        <a href="#">coffee</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="banner">
-    <img class="logo" src="img/city-logo.svg" alt="city">
-    <h1 class="headline">The Best City</h1>
-    <span class="tagline">The best drinks and eats in the best city ever.</span>
+  <div class="progress">
+    <div></div>
   </div>
 
-  <main>
-    <div class="welcome column">
-      <h2>Welcome</h2>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus autem modi aperiam delectus sint exercitationem, pariatur
-        ea, officia maiores distinctio eos ab reiciendis perferendis iure soluta dolor! Maxime, rem aut.</p>
-      <p>Dolorem aperiam natus aut facere nulla voluptate unde maiores. Nulla rerum architecto, illum nesciunt, voluptas consectetur
-        at fugiat sint vel dignissimos voluptates corrupti fugit suscipit numquam, sunt amet ipsa magni!</p>
-      <p>Porro odit nemo ratione distinctio illo debitis sunt laborum tempore consectetur quia aspernatur iusto a eum, provident
-        eius repudiandae minima! Quam magnam fugiat repellendus explicabo distinctio labore quasi qui. Qui!</p>
-    </div>
-    <div class="food column">
-      <h2>Great food</h2>
-      <figure>
-        <img class="icon-location" src="img/location.svg" alt="Location pin">
-        <img class="feat-img" src="img/treats.svg" alt="Drinks and eats">
-        <figcaption>
-          <h4>Featured Drinks & Eats</h4>
-          Croissant macaroon pie brownie cookie marshmallow liquorice gingerbread caramels toffee.
-        </figcaption>
-      </figure>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus veritatis quas atque est dicta quisquam consequuntur,
-        beatae sequi ut vero consequatur omnis impedit, molestias et perferendis. Beatae repellendus nemo tenetur.</p>
-    </div>
-    <div class="directions column">
-      <h2>How to get here</h2>
-      <p><strong>Plane:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi quidem ab aperiam sunt, perferendis
-        ratione placeat laborum numquam? Dignissimos assumenda fugiat deserunt neque numquam minus at beatae commodi qui
-        quam.
-      </p>
-      <p><strong>Train:</strong> Ad illum esse harum consectetur, dignissimos maxime rerum eaque iste! Autem sapiente cum assumenda
-        expedita! Dolorem illo ut nesciunt error sed quidem quos voluptatum molestiae, consequuntur explicabo? Autem, quibusdam
-        molestias?
-      </p>
-      <p><strong>Car:</strong> Rerum incidunt laudantium laboriosam repudiandae neque et omnis deleniti ab molestias magnam,
-        tenetur assumenda recusandae unde impedit, numquam asperiores ullam soluta at veritatis facere? Alias cumque quod
-        fugiat excepturi ut?
-      </p>
-    </div>
-  </main>
+  <label for="name">Name: </label>
+  <input type="text" name="name" id="name" data-help="Your full name" placeholder="Your full name">
 
-  <footer>
-    <span>&copy;2017 Residents of The Best City Ever</span>
-  </footer>
+  <label for="age">Age: </label>
+  <input type="text" name="age" id="age" data-help="Age in years">
 
-  <script src="index.js"></script>
+  <div class="help"></div>
+
+  <textarea>Type something here...</textarea>
+
+  <label for="censored">Censored:</label>
+  <input type="text" name="censored" class="censored" placeholder="no Q, W, or X">
+
+  <script>
+    const censored = document.querySelector('.censored');
+
+
+    // Q = 81, W = 87, X = 88
+    censored.addEventListener('keydown', (event) => {
+      if (event.keyCode === 81 || event.keyCode === 87 || event.keyCode === 88) {
+        event.preventDefault();
+      }
+    });
+
+
+
+    const bar = document.querySelector('.progress div');
+
+    addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      const percent = (window.scrollY / max) * 100;
+
+      bar.style.width = `${percent}%`;
+    });
+
+    const help = document.querySelector('.help');
+    const fields = document.querySelectorAll('input');
+
+    for (const field of fields) {
+      field.addEventListener('focus', function () {
+        help.innerText = this.getAttribute('data-help');
+      });
+
+      field.addEventListener('blur', () => help.innerText = '');
+    }
+
+    // setTimeout(() => console.log('Ha ha, scared you!'), 2000);
+
+    const textarea = document.querySelector('textarea');
+    let timeout;
+
+    textarea.addEventListener('keydown', () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => console.log('You stopped typing.'), 500);
+    })
+
+
+  </script>
 </body>
 
 </html>
